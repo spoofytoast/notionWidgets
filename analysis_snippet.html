@@ -4,21 +4,38 @@
 		<!-- <base target="_top"> -->
 		<link rel="stylesheet" href="styles.css">
 	</head>
+
 	<body class = "centre">
-		<div class="box-outline" style="border-color: #ffbfcb; box-shadow: 2px 2px 2px #ffe1e9;">
-			<h2 style="color: #ffbfcb; text-shadow: 2px 2px 2px #ffe1e9;">total expenditure (€)</h2>
-			<h1 style="color: #ffbfcb; text-shadow: 2px 2px 2px #ffe1e9;">4398.4</h1>
-		</div>
-		<div class="box-outline" style="border-color: #f3bcff; box-shadow: 2px 2px 2px #ebd8ff;">
-			<h2 style="color: #f3bcff; text-shadow: 2px 2px 2px #ebd8ff; padding: 0px 6px 0px 6px;">excluding rent (€)</h2>
-			<h1 style="color: #f3bcff; text-shadow: 2px 2px 2px #ebd8ff;">4398.4</h1>
-		</div>
-		<div class="box-outline">
+		<div class="box-outline" style="background-color: #ffdfe7; box-shadow: 2px 2px 2px #ffeaef;">
 			<h2>total expenditure (€)</h2>
-			<h1>4398.4</h1>
+			<h1 id="total">hold on</h1>
 		</div>
-		<script>
-			
+		<div class="box-outline" style="background-color: #f3e7ff; box-shadow: 2px 2px 2px #f5ebff;">
+			<h2 style="padding-left: 14px; padding-right: 14px;">excluding rent (€)</h2>
+			<h1 id="total_excl_rent">hold on</h1>
+		</div>
+		<div class="box-outline" style="background-color: #fffbe3; box-shadow: 2px 2px 2px #fbffed;">
+			<h2 style="padding-left: 29px; padding-right: 29px;">this month (€)</h2>
+			<h1 id="total_this_month">hold on</h1>
+		</div>
+
+		<script type="text/javascript">
+			function displayTotalValues() {
+				var url = 'https://script.google.com/macros/s/AKfycbzxqRW981Hvk7_94j-8ajZOZUCIxy9yAo2d1DFYJXSNVkv0ywE9ciYQDCHcTL84GskExQ/exec';
+				fetch(url).then(response => response.json()).then(data => {
+					// console.log(data);
+					console.log(data);
+					total = document.getElementById("total");
+					total.innerHTML = data[0];
+					total_excl_rent = document.getElementById("total_excl_rent");
+					total_excl_rent.innerHTML = data[1];
+					total_this_month = document.getElementById("total_this_month");
+					total_this_month.innerHTML = data[2];
+				}).catch(err => {
+					console.log("error :(")
+				});
+			}
+			timer = setInterval(displayTotalValues, 1000); // change to calls every minute
 		</script>
 	</body>
 </html>
