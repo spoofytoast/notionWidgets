@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<!-- <base target="_top"> -->
+		<link rel="stylesheet" href="styles.css">
+	</head>
+
+	<body class = "centre">
+		
+		<script type="text/javascript">
+			function displayCityCount() {
+				var url = 'https://script.google.com/macros/s/AKfycbzxqRW981Hvk7_94j-8ajZOZUCIxy9yAo2d1DFYJXSNVkv0ywE9ciYQDCHcTL84GskExQ/exec?function=cityCount&callback=handleResponse';
+				fetch(url).then(response => response.json()).then(data => {
+					// console.log(data);
+					console.log(data);
+					
+				}).catch(err => {
+					console.log("error :(")
+				});
+			}
+			timer = setInterval(displayCityCount, 86400000);
+			timer = setInterval(displayCityCount, 1000);
+		</script>
+	</body>
+</html>
