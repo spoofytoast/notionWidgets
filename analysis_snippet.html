@@ -21,7 +21,7 @@
 
 		<script type="text/javascript">
 			function displayTotalValues() {
-				var url = 'https://script.google.com/macros/s/AKfycbzxqRW981Hvk7_94j-8ajZOZUCIxy9yAo2d1DFYJXSNVkv0ywE9ciYQDCHcTL84GskExQ/exec';
+				var url = 'https://script.google.com/macros/s/AKfycbzxqRW981Hvk7_94j-8ajZOZUCIxy9yAo2d1DFYJXSNVkv0ywE9ciYQDCHcTL84GskExQ/exec?function=calculateTotals&callback=handleResponse';
 				fetch(url).then(response => response.json()).then(data => {
 					// console.log(data);
 					console.log(data);
@@ -35,6 +35,7 @@
 					console.log("error :(")
 				});
 			}
+			displayTotalValues();
 			timer = setInterval(displayTotalValues, 86400000); // change to calls every minute
 		</script>
 	</body>
