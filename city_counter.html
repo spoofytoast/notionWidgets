@@ -1,25 +1,26 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<!-- <base target="_top"> -->
 		<link rel="stylesheet" href="styles.css">
 	</head>
 
 	<body class = "centre">
-		
+		<div class="box-outline" style="background-color: #ece8fe; width: 80%;">
+			<h1>cities</h1>
+			<h1 id="cityCountNum">...</h1>
+		</div>
+
 		<script type="text/javascript">
 			function displayCityCount() {
-				var url = 'https://script.google.com/macros/s/AKfycbzxqRW981Hvk7_94j-8ajZOZUCIxy9yAo2d1DFYJXSNVkv0ywE9ciYQDCHcTL84GskExQ/exec?function=cityCount&callback=handleResponse';
+				var url = 'https://script.google.com/macros/s/AKfycbzugnklDzuLD9Io-kTZYdgzF0_VWFgV3VfT02N8E1HDekyQTOG4wdwCSBBbEPh9D6B-0Q/exec?function=cityCount&callback=handleResponse';
 				fetch(url).then(response => response.json()).then(data => {
-					// console.log(data);
-					console.log(data);
-					
+					document.getElementById("cityCountNum").innerHTML = data;
 				}).catch(err => {
 					console.log("error :(")
 				});
 			}
-			// timer = setInterval(displayCityCount, 86400000);
-			// timer = setInterval(displayCityCount, 1000);
+			displayCityCount();
+			timer = setInterval(displayCityCount, 86400000); // change to calls every minute
 		</script>
 	</body>
 </html>
