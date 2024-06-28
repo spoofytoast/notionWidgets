@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+	<head>
+		<link rel="stylesheet" href="styles.css">
+	</head>
+
+	<body class = "centre">
+		<div>
+			<p id="testing">hey</p>
+			<canvas id="expensesByCategory" style="width: 100%;"></canvas>
+		</div>
+		<script type="text/javascript">
+			function generateCategoryBarChart() {
+				var x = [];
+				var y = [];
+				
+				
+				var url = 'https://script.google.com/macros/s/AKfycbwVF8GyzJJ26MmWRAY-shUR-8OSZ973DhAGiurdgFsuYMG7aiGqChdhg99eAU86xRhFJA/exec?function=getCategoryValues&callback=handleResponse';
+				fetch(url).then(response => response.json()).then(data => {
+					console.log(data);
+					document.getElementById("testing").innerHTML = data;
+					for (let i = 0; i < data.length; i++) {
+						x.push(data[i][0]);
+						y.push(data[i][1]);
+					}
+					console.log(x);
+					console.log(y);
+					new Chart("expensesByCategory", {
+						type: "bar",
+						data: {
+							labels: x,
+							data: y,
+							// data: y,
+							datasets: [{
+								backgroundColor: [
+									'rgba(255, 99, 132, 0.2)',
+									'rgba(255, 159, 64, 0.2)',
+									'rgba(255, 205, 86, 0.2)',
+									'rgba(75, 192, 192, 0.2)',
+									'rgba(54, 162, 235, 0.2)',
+									'rgba(153, 102, 255, 0.2)',
+									'rgba(201, 203, 207, 0.2)'
+								],
+								borderColor: [
+									'rgb(255, 99, 132)',
+									'rgb(255, 159, 64)',
+									'rgb(255, 205, 86)',
+									'rgb(75, 192, 192)',
+									'rgb(54, 162, 235)',
+									'rgb(153, 102, 255)',
+									'rgb(201, 203, 207)'
+								],
+								borderWidth: 1
+							
+							}]
+						},
+						options: {
+							title: {
+							// display: true,
+							// text: "expenses by category"
+							}
+						}
+					});
+				}).catch(err => {
+					console.log("error :(")
+				});
+				
+			}
+			generateCategoryBarChart();
+            // timer = setInterval(generateCategoryBarChart, 5000); // 86400000
+		</script>
+	</body>
+</html>
