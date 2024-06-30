@@ -14,7 +14,7 @@
 		<script type="text/javascript">
 			function fromNotionToSheet() {
 				document.getElementById("refreshButton").innerHTML = "<br>refreshing<br><3";
-				var url = 'https://script.google.com/macros/s/AKfycbzugnklDzuLD9Io-kTZYdgzF0_VWFgV3VfT02N8E1HDekyQTOG4wdwCSBBbEPh9D6B-0Q/exec?function=updateSheetFromNotion&callback=handleResponse';
+				var url = 'https://script.google.com/macros/s/AKfycbxH4Eo9tmOg6lIKG26tNgDKShDQLWdxAlYur6XhTgCKAIos7WkIgqfes8X3h3lLSEPKUg/exec?function=updateSheetFromNotion&callback=handleResponse';
 				fetch(url).then(response => response.json()).then(data => {
 					if (data == 'updated sheet') document.getElementById("refreshButton").innerHTML = "update<br>expenses<br>widgets";
 				}).catch(err => {

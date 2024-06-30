@@ -16,11 +16,11 @@
 				var y = [];
 				
 				
-				var url = 'https://script.google.com/macros/s/AKfycbwVF8GyzJJ26MmWRAY-shUR-8OSZ973DhAGiurdgFsuYMG7aiGqChdhg99eAU86xRhFJA/exec?function=getCategoryValues&callback=handleResponse';
+				var url = 'https://script.google.com/macros/s/AKfycbxH4Eo9tmOg6lIKG26tNgDKShDQLWdxAlYur6XhTgCKAIos7WkIgqfes8X3h3lLSEPKUg/exec?function=getCategoryValues&callback=handleResponse';
 				fetch(url).then(response => response.json()).then(data => {
 					for (let i = 0; i < data.length; i++) {
 						x.push(data[i][0]);
-						y.push((500 + data[i][1]).toFixed(2));
+						y.push(data[i][1].toFixed(2));
 					}
 					new Chart("expensesByCategory", {
 						type: "bar",
